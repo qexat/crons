@@ -1,0 +1,15 @@
+name: Mirror Repository
+on:
+  schedule:
+    - cron: "0 */1 * * *"
+  workflow_dispatch:
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        run: |
+          git clone --mirror https://git.sr.ht/~sircmpwn/hare
+          cd hare.git
+          git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN }}@github.com/qexat/hare.git"
+          git push --mirror
