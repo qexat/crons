@@ -1,4 +1,4 @@
-name: Mirror Repository
+name: Hare Mirror Repository
 on:
   schedule:
     - cron: "0 */12 * * *"
