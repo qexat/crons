@@ -13,7 +13,7 @@ jobs:
           git clone https://github.com/frej/fast-export
       - name: Fetch respository
         run: |
-          hg clone https://sr.ht/~icefox/garnet/ garnet-mercurial
+          hg clone https://hg.sr.ht/~icefox/garnet garnet-mercurial
       - name: Prepare Git repository
         run: |
           mkdir git-repo
