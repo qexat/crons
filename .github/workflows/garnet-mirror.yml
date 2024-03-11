@@ -9,11 +9,10 @@ jobs:
     steps:
       - name: Checkout source repository
         run: |
-          pip install mercurial
           git clone https://github.com/frej/fast-export
           hg clone https://hg.sr.ht/~icefox/garnet garnet-mercurial
-          mkdir git-repo
-          cd git-repo
+          mkdir garnet-git
+          cd garnet-git
           git init
           git config core.ignoreCase false
           cd ../garnet-mercurial
