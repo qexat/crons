@@ -1,0 +1,33 @@
+name: Garnet Mirror Repository
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare dependencies
+        run: |
+          pip install mercurial
+          git clone https://github.com/frej/fast-export
+      - name: Fetch respository
+        run: |
+          hg clone https://sr.ht/~icefox/garnet/ garnet-mercurial
+      - name: Prepare Git repository
+        run: |
+          mkdir git-repo
+          cd git-repo
+          git init
+          git config core.ignoreCase false
+      - name: Prepare Fast Export Requirements
+        run: |
+          cd ../garnet-mercurial
+          hg log --template "{author}={author}\n" | sort | uniq > committers.txt
+          cd ../garnet-git
+          ../fast-export/hg-fast-export.sh -r ../garnet-mercurial -A ../garnet-mercurial/committers.txt -M main
+      - name: Checkout
+        run: |
+          git checkout
+          git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN_GARNET }}@github.com/qexat/garnet.git"
+          git push --mirror
