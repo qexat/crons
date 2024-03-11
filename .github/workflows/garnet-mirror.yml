@@ -21,5 +21,6 @@ jobs:
           cd ../garnet-git
           ../fast-export/hg-fast-export.sh -r ../garnet-mercurial -A ../garnet-mercurial/committers.txt -M main
           git checkout
+          git remote add origin "https://github.com/qexat/garnet.git"
           git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN_GARNET }}@github.com/qexat/garnet.git"
           git push --mirror
