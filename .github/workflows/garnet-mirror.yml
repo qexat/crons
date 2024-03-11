@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Checkout source repository
         run: |
+          git config --global init.defaultBranch main
           git clone https://github.com/frej/fast-export
           hg clone https://hg.sr.ht/~icefox/garnet garnet-mercurial
           mkdir garnet-git
