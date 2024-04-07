@@ -11,5 +11,5 @@ jobs:
         run: |
           git clone --mirror https://git.sr.ht/~sircmpwn/hare
           cd hare.git
-          git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN }}@github.com/qexat/hare.git"
+          git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN_HARE }}@github.com/qexat/hare.git"
           git push --mirror
