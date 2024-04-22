@@ -20,6 +20,7 @@ jobs:
           git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN_MAGIC_LIST }}@github.com/qexat/magic-list.git"
           git checkout -b build-docs
           python -m pip install --upgrade pip
+          pip install typing_extensions
           pip install -e .[dev]
           pdoc magic_list/ -n -d numpy -o docs/
           git add docs/
