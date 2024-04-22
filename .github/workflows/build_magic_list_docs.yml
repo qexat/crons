@@ -11,24 +11,19 @@ jobs:
         run: |
           git config --global user.name "DocsBot[bot]"
           git config --global user.email "contact@qexat.com"
-      - name: Checkout
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build the docs
         run: |
           git clone https://github.com/qexat/magic-list/
           cd magic-list
           git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN_MAGIC_LIST }}@github.com/qexat/magic-list.git"
           git checkout main
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install dependencies
-        run: |
           python -m pip install --upgrade pip
           pip install -e .[dev]
-      - name: Build documentation
-        run: pdoc magic_list/ -n -d numpy -o docs/
-      - name: Push the result
-        run: |
+          pdoc magic_list/ -n -d numpy -o docs/
           git add docs/
           git commit -m "doc: build"
           git push origin
