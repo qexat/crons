@@ -15,14 +15,19 @@ jobs:
         run: |
           git config --global user.name "DocsBot[bot]"
           git config --global user.email "contact@qexat.com"
+          git config --global push.autoSetupRemote true
+
           git clone https://github.com/qexat/magic-list/
           cd magic-list
           git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN_MAGIC_LIST }}@github.com/qexat/magic-list.git"
           git checkout -b build-docs
+
           python -m pip install --upgrade pip
           pip install typing_extensions
           pip install -e .[dev]
+          
           pdoc magic_list/ --logo docs/magic_list_banner.png -n -d numpy -o docs/
+          
           git add docs/
           git commit -m "doc: build"
           git push origin
