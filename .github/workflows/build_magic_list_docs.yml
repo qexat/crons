@@ -28,7 +28,7 @@ jobs:
           pip install typing_extensions
           pip install -e .[dev]
           
-          pdoc magic_list/ --logo docs/magic_list_banner.png -n -d numpy -o docs/
+          pdoc magic_list/ --logo magic_list_logo.svg -n -d numpy -o docs/
           
           git add docs/
           git commit -m "doc: build"
