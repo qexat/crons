@@ -1,8 +1,13 @@
 name: Build Magic List docs
+
 on:
   schedule:
     - cron: "0 */24 * * *"
   workflow_dispatch:
+
+env:
+  GH_TOKEN: ${{ github.token }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
