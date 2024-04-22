@@ -14,6 +14,7 @@ jobs:
       - name: Checkout
         run: |
           git clone https://github.com/qexat/magic-list/
+          cd magic-list
           git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN_MAGIC_LIST }}@github.com/qexat/magic-list.git"
           git checkout main
       - name: Set up Python
@@ -22,7 +23,6 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: |
-          cd magic-list
           python -m pip install --upgrade pip
           pip install -e .[dev]
       - name: Build documentation
