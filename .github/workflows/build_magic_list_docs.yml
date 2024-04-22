@@ -37,5 +37,5 @@ jobs:
           
           git add docs/
           git commit -m "doc: build"
-          git push origin
+          git push origin --force-with-lease
           gh pr create --base main --label "area: meta" --title "chore: build docs" --body "This pull request was generated automatically."
