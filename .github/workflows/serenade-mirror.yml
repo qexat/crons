@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout source repository
         run: |
-          sudo apt-get install --force git-svn
+          sudo apt-get -f install -y git-svn
 
           git config --global init.defaultBranch main
 
