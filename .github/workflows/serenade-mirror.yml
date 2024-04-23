@@ -9,7 +9,10 @@ jobs:
     steps:
       - name: Checkout source repository
         run: |
+          sudo apt-get install git-svn
+
           git config --global init.defaultBranch main
+
           git svn clone https://sw.nishi.boats/svn/nishi-serenade serenade-git
           cd serenade-git
           git remote add origin "https://github.com/qexat/serenade.git"
