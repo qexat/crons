@@ -9,7 +9,9 @@ jobs:
     steps:
       - name: Checkout source repository
         run: |
-          sudo apt-get -f install -y "git-all=1:2.34"
+          sudo add-apt-repository ppa:git-core/ppa
+          sudo apt-get update
+          sudo apt-get install -y git-svn
 
           git config --global init.defaultBranch main
 
