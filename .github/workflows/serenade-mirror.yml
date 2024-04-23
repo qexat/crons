@@ -1,0 +1,17 @@
+name: Serenade Mirror Repository
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repository
+        run: |
+          git config --global init.defaultBranch main
+          git svn clone https://sw.nishi.boats/svn/nishi-serenade serenade-git
+          cd serenade-git
+          git remote add origin "https://github.com/qexat/serenade.git"
+          git remote set-url --push origin "https://qexat:${{ secrets.SOURCE_TOKEN_SERENADE }}@github.com/qexat/serenade.git"
+          git push --mirror
