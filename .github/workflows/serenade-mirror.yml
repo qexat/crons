@@ -10,13 +10,11 @@ jobs:
       - name: Cache APT Packages
         uses: awalsh128/cache-apt-pkgs-action@v1.4.2
         with:
-          packages: git-svn
+          packages: git git-svn
           version: 1.0
 
       - name: Checkout source repository
         run: |
-          sudo apt-get install git-svn
-
           git config --global init.defaultBranch main
 
           git svn clone https://sw.nishi.boats/svn/nishi-serenade serenade-git
