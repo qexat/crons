@@ -29,7 +29,9 @@ jobs:
           pip install -e .[dev]
           
           pdoc magic_list/ --logo magic_list_logo.svg -n -d numpy -o docs/
-          
+
           git add docs/
-          git commit -m "doc: build"
+          pre-commit run --all-files
+          git add docs/
+          git commit -m "chore: build docs"
           git push origin --force-with-lease
